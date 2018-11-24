@@ -22,11 +22,6 @@ public class PlayerMove : MonoBehaviour {
 
 	private int lane = 0;	//1 = topo, -1 = bot, 0 = mid
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
 	// Update is called once per frame
 	void Update () {
 		float xValue = transform.position.x;
