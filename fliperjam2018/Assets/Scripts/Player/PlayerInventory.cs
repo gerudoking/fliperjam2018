@@ -61,6 +61,7 @@ public class PlayerInventory : MonoBehaviour {
 		if(c.gameObject.tag == "isItem" && GetComponent<PlayerMove>().lane == c.GetComponent<Item>().Lane){
 			if(string.IsNullOrEmpty(slot0)){
 				slot0 = c.gameObject.GetComponent<Item>().ItemType;
+                Destroy(c.gameObject);
 				return;
 			}
 			if(string.IsNullOrEmpty(slot1)){

@@ -71,6 +71,10 @@ public class PlayerMove : MonoBehaviour {
             if (Input.GetAxisRaw("Jump_1") > 0)
                 StartCoroutine( Jump());
         }
+		else{
+			if (Input.GetAxisRaw("Jump_2") > 0)
+                StartCoroutine( Jump());
+		}
 
 		//Catchup!
 		if(transform.position.x < standardX && collisionCounter == 0){
