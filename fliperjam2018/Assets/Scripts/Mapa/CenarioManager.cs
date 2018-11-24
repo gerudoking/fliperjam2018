@@ -11,11 +11,17 @@ public class CenarioManager : MonoBehaviour {
     public float TimeToGainSpeed = 0.2f;
 
     public Transform _lastPlat;
-    public static Transform lastPlat;
+    public static Transform lastTopPlat;
+
+    public Transform _lastBotPlat;
+    public static Transform lastBotPlat;
+
 
     public void Start()
     {
-        lastPlat = _lastPlat;
+        lastTopPlat = _lastPlat;
+        lastBotPlat = _lastBotPlat;
+
         velocity = _velocity;
         StartCoroutine(AddVelocity());
     }

@@ -7,9 +7,10 @@ public class Item : MonoBehaviour {
 	[SerializeField]
 	private string itemType;
 
-	private float speed;
+    private float speed;
 	private Rigidbody2D rb;
-	private int lane;
+    [SerializeField]
+    private int lane;
 
 	public string ItemType{
 		get{
@@ -26,9 +27,22 @@ public class Item : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-		//Pega a velocidade(TO DO). O valor abaixo é um teste
-		speed = -4;
+
+        //Agora tá pegando a velocidade do cenario
+        speed = -CenarioManager.velocity; //-4;
 
 		rb.velocity = new Vector2(speed, 0);
 	}
+
+    public void setLane(int lane)
+    {
+        this.lane = lane;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "end")
+            Destroy(this.gameObject);
+    }
+
 }

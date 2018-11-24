@@ -7,9 +7,12 @@ public class CenarioMovement : MonoBehaviour {
     private Rigidbody2D rigid;
     private BoxCollider2D box;
     private float xSize;
+    private bool isTopSide;
 
     public void Start()
     {
+        isTopSide = (transform.parent.tag == "TopSide") ? true : false;
+
         box = GetComponent<BoxCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
         xSize = box.bounds.extents.x;
@@ -21,18 +24,30 @@ public class CenarioMovement : MonoBehaviour {
     }
 
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.tag == "end")
+        if (collision.tag == "end")
             BackToBegin();
     }
 
     public void BackToBegin()
     {
-        var lastPos = CenarioManager.lastPlat;
+       
 
-        this.transform.position = new Vector3(lastPos.position.x + (xSize*2), this.transform.position.y, this.transform.position.z);
-        CenarioManager.lastPlat = this.transform;
+        if (isTopSide)
+        {
+            var lastPos = CenarioManager.lastTopPlat;
+            this.transform.position = new Vector3(lastPos.position.x + (xSize * 2), this.transform.position.y, this.transform.position.z);
+            CenarioManager.lastTopPlat = this.transform;
+
+        }
+        else
+        {
+            var lastPos = CenarioManager.lastBotPlat;
+            this.transform.position = new Vector3(lastPos.position.x + (xSize * 2), this.transform.position.y, this.transform.position.z);
+            CenarioManager.lastBotPlat = this.transform;
+        }
+
     }
 
 

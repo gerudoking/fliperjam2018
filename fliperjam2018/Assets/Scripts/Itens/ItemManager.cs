@@ -12,6 +12,9 @@ public class ItemManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject slime;
 
+    [SerializeField]
+    private bool isPlayer1;
+
 	//Posição das lanes desse item manager
 	[SerializeField]
 	private float posLine0;	//topo
@@ -32,7 +35,24 @@ public class ItemManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = new Timer(Timer.TYPE.DECRESCENTE, spawnTime);
-	}
+
+        if(isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player 
+        {
+            var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerMove>();
+            posLine0 = p1.GetLanePos(1);
+            posLine1 = p1.GetLanePos(0);
+            posLine2 = p1.GetLanePos(-1);
+        }
+        else
+        {
+            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerMove>();
+            posLine0 = p2.GetLanePos(1);
+            posLine1 = p2.GetLanePos(0);
+            posLine2 = p2.GetLanePos(-1);
+        }
+
+
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -45,31 +65,35 @@ public class ItemManager : MonoBehaviour {
 
 	private void SpawnItem(){
 		Debug.Log("Item spawned");
-		int random = UnityEngine.Random.Range(0,3);
+		int lane = UnityEngine.Random.Range(-1,2);
 		float lanePos = 0;
-		switch(random){
-			case 0:
+		switch(lane)
+        {
+			case 1:
 				lanePos = posLine0;
 			break;
-			case 1:
+			case 0:
 				lanePos = posLine1;
 			break;
-			case 2:
+			case -1:
 				lanePos = posLine2;
 			break;
 		}
 
-		random = UnityEngine.Random.Range(0,3);
+        GameObject obj = new GameObject();
+        Destroy(obj);
+		var random = UnityEngine.Random.Range(0,3);
 		switch(random){
 			case 0:
-				GameObject.Instantiate(block, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
 			break;
 			case 1:
-				GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+                obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
 			break;
 			case 2:
-				GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
 			break;
 		}
+        obj.GetComponent<Item>().setLane(lane);
 	}
 }

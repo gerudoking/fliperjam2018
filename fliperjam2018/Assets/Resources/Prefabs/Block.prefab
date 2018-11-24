@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22ab7da525700344b53b663727a2d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: block
+  itemType: rock
 --- !u!212 &212473988667674384
 SpriteRenderer:
   m_ObjectHideFlags: 1

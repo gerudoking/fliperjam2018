@@ -6,6 +6,10 @@ TagManager:
   tags:
   - end
   - isItem
+  - Player2
+  - Player1
+  - TopSide
+  - BotSide
   layers:
   - Default
   - TransparentFX
@@ -42,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1446269181
+    locked: 0
+  - name: Middle
+    uniqueID: 2192852847
     locked: 0
