@@ -45,6 +45,12 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
+	public bool IsJumping{
+		get{
+			return isJumping;
+		}
+	}
+
     public void Start()
     {
 		lossX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x / 2;

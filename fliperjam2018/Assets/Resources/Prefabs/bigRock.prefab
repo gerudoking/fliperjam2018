@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212795320955992778}
   - component: {fileID: 61762048722089430}
   - component: {fileID: 50959132129938456}
-  - component: {fileID: 114998640402640476}
+  - component: {fileID: 114870716433888582}
   m_Layer: 0
   m_Name: bigRock
   m_TagString: Untagged
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &114998640402640476
+--- !u!114 &114870716433888582
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649771809700508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a5f527bafc6584ba7eb89566c54d00, type: 3}
+  m_Script: {fileID: 11500000, guid: 225d7208f1ed9f84f9bc949b733e2332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lane: 0
   player: 0
+  allLane: 1
 --- !u!212 &212795320955992778
 SpriteRenderer:
   m_ObjectHideFlags: 1

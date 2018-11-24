@@ -32,7 +32,7 @@ public class MapObject : MonoBehaviour {
 	        this.lane = lane;
 	    }
 
-	    private void OnTriggerEnter2D(Collider2D collision)
+	    protected void OnTriggerEnter2D(Collider2D collision)
 	    {
 	        if (collision.tag == "end")
 	            Destroy(this.gameObject);
