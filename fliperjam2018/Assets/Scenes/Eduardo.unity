@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: rock
   slot1: 
-  life: 5
+  life: 0
 --- !u!114 &99390913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,8 @@ MonoBehaviour:
   posLine2: {fileID: 1803968393}
   changeLaneSpeed: 10
   valor: 0.5
-  catchupSpeed: 2
+  catchupSpeed: 0
+  thisItemManager: {fileID: 1695491985}
   lane: 0
 --- !u!50 &99390914
 Rigidbody2D:
@@ -239,7 +240,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.8784349, b: 0, a: 1}
+  m_Color: {r: 0.20152186, g: 0.8679245, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -619,6 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 3
   velocityGain: 0.1
+  maxVelocity: 20
   TimeToGainSpeed: 0.2
   _lastPlat: {fileID: 1826134747}
   _lastBotPlat: {fileID: 1943826292}
@@ -2551,7 +2553,8 @@ MonoBehaviour:
   posLine2: {fileID: 278684043}
   changeLaneSpeed: 10
   valor: 0.5
-  catchupSpeed: 2
+  catchupSpeed: 0
+  thisItemManager: {fileID: 2039965974}
   lane: 0
 --- !u!50 &1962245809
 Rigidbody2D:
@@ -2609,7 +2612,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.8784349, b: 0, a: 1}
+  m_Color: {r: 0.8584906, g: 0, b: 0.72023654, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2645,7 +2648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: 
   slot1: 
-  life: 5
+  life: 0
 --- !u!58 &1962245813
 CircleCollider2D:
   m_ObjectHideFlags: 0

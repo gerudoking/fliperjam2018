@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lane: 0
   player: 0
+  allLane: 0
   explosionX: 2
 --- !u!212 &212616400589922784
 SpriteRenderer:
