@@ -19,13 +19,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206852960260920}
-  - component: {fileID: 114183240959749844}
   - component: {fileID: 212875977305754880}
   - component: {fileID: 61662238480126334}
   - component: {fileID: 50072505334081598}
+  - component: {fileID: 114910033069147224}
   m_Layer: 0
   m_Name: rock
-  m_TagString: isItem
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &114183240959749844
+--- !u!114 &114910033069147224
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,10 +96,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1715748242997452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d22ab7da525700344b53b663727a2d4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 38a5f527bafc6584ba7eb89566c54d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: rock
   lane: 0
 --- !u!212 &212875977305754880
 SpriteRenderer:

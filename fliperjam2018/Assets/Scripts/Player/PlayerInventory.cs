@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour {
 
     public void Start()
     {
-        if (this.tag == "Player1")  //Procura o outro player com base na tag 
+        if (this.tag == "Player1")  //Procura o outro player com base na tag
             enemyPlayer = GameObject.FindGameObjectWithTag("Player2");
         else
             enemyPlayer = GameObject.FindGameObjectWithTag("Player1");
@@ -28,12 +28,18 @@ public class PlayerInventory : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Alpha2) && this.tag == "Player1")
             UseItem(2);
+
+        if (Input.GetKeyDown(KeyCode.Alpha9) && this.tag == "Player2")
+            UseItem(1);
+
+        if(Input.GetKeyDown(KeyCode.Alpha0) && this.tag == "Player2")
+            UseItem(2);
     }
 
 
     void UseItem(int buttonNumber) //passar numero do botão que tá sendo apertado, tipo 1 ou 2
     {
-        if (buttonNumber == 1 & slot0 == null) //verificar se o slot não está vazio , senão ele sai 
+        if (buttonNumber == 1 & slot0 == null) //verificar se o slot não está vazio , senão ele sai
             return;
 
         if (buttonNumber == 2 && slot1 == null)

@@ -26,13 +26,28 @@ public class PlayerMove : MonoBehaviour {
 	private float changeLaneSpeed;
 
 	[SerializeField]
-	private float valor = .5f; // se ele ficar em valor muito pequeno ele passa e continua 
+	private float valor = .5f; // se ele ficar em valor muito pequeno ele passa e continua
+
+	[SerializeField]
+	private float catchupSpeed;
 
 	public int lane = 0;	//1 = topo, -1 = bot, 0 = mid , public pq preciso pegar fora
     private Rigidbody2D rigid;
+	private float lossX;
+	private float standardX = 0;
+	private int collisionCounter = 0;
+	private bool catchingUp = false;
+	private bool lost = false;
+
+	public bool PlayerNum{
+		get{
+			return playerNum;
+		}
+	}
 
     public void Start()
     {
+		lossX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x / 2;
         rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -49,14 +64,30 @@ public class PlayerMove : MonoBehaviour {
         if(!isJumping)
             Move(); //Coloquei em uma função para ter controle de quando pode executar as movimentações ou não
 
-        //Pulando 
+        //Pulando
         if(playerNum)
         {
-            Debug.Log(Input.GetAxisRaw("Jump_1"));
+            //Debug.Log(Input.GetAxisRaw("Jump_1"));
             if (Input.GetAxisRaw("Jump_1") > 0)
                 StartCoroutine( Jump());
         }
 
+		//Catchup!
+		if(transform.position.x < standardX && collisionCounter == 0){
+			rigid.velocity = new Vector3(catchupSpeed, rigid.velocity.y);
+			Debug.Log("Catching Up!");
+			catchingUp = true;
+		}
+		else if(transform.position.x >= standardX && catchingUp){
+			rigid.velocity = new Vector3(0, rigid.velocity.y);
+			transform.position = new Vector3(standardX, transform.position.y, 0);
+			catchingUp = false;
+		}
+
+		//Loss condition
+		if(lost){
+			LoseGame();
+		}
     }
 
     public IEnumerator Jump()
@@ -118,6 +149,9 @@ public class PlayerMove : MonoBehaviour {
 
         if (lane == 1)
         {
+			//Seta o layer para a física da lane
+			gameObject.layer = 8;
+
             if (Vector3.Distance(transform.position, posLine0.transform.position) > valor)
             {
                 rigid.velocity = new Vector2(velX, changeLaneSpeed);
@@ -132,6 +166,9 @@ public class PlayerMove : MonoBehaviour {
 
         if (lane == -1)
         {
+			//Seta o layer para a física da lane
+			gameObject.layer = 10;
+
             if (Vector3.Distance(transform.position, posLine2.transform.position) > valor)
             {
                 rigid.velocity = new Vector2(velX, -changeLaneSpeed);
@@ -146,6 +183,9 @@ public class PlayerMove : MonoBehaviour {
 
         if (lane == 0)
         {
+			//Seta o layer para a física da lane
+			gameObject.layer = 9;
+
             if (Vector3.Distance(transform.position, posLine1.transform.position) > valor)
             {
                 if (transform.position.y - posLine1.transform.position.y > 0)
@@ -164,8 +204,6 @@ public class PlayerMove : MonoBehaviour {
             }
         }
     }
-
-
 
 
     public float GetLanePos(int laneNumber) //apenas uma maneira para eu retornar o valor da lane requisitada por fora
@@ -187,4 +225,29 @@ public class PlayerMove : MonoBehaviour {
         }
 
     }
+
+	//Chamada quando este jogador perde o jogo
+	private void LoseGame(){
+		if(playerNum){
+			Debug.Log("True perdeu!");
+		}
+		else{
+			Debug.Log("False perdeu!");
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D c){
+		collisionCounter++;
+	}
+
+	private void OnCollisionExit2D(Collision2D c){
+		collisionCounter--;
+		rigid.velocity = new Vector2(0, rigid.velocity.y);
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.tag == "end")
+			lost = true;
+	}
 }
