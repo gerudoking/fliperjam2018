@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapObject : MonoBehaviour {
 
-	    private float speed;
-		private Rigidbody2D rb;
+	    protected float speed;
+		protected Rigidbody2D rb;
 	    [SerializeField]
 	    protected int lane;
 		public bool player;
@@ -18,7 +18,7 @@ public class MapObject : MonoBehaviour {
 		}
 
 		// Use this for initialization
-		void Start () {
+		protected void Start () {
 			rb = GetComponent<Rigidbody2D>();
 
 	        //Agora tá pegando a velocidade do cenario
