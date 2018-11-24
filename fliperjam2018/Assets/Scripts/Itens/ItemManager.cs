@@ -10,7 +10,11 @@ public class ItemManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject bomb;
 	[SerializeField]
-	private GameObject slime;
+	private GameObject bSpike;
+	[SerializeField]
+	private GameObject spike;
+	[SerializeField]
+	private GameObject bBlock;
 
     [SerializeField]
     private bool isPlayer1;
@@ -47,7 +51,7 @@ public class ItemManager : MonoBehaviour {
 
     public void AtualizeValues()
     {
-        if (isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player 
+        if (isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player
         {
             posLine0 = p1.GetLanePos(1);
             posLine1 = p1.GetLanePos(0);
@@ -89,7 +93,7 @@ public class ItemManager : MonoBehaviour {
 
         GameObject obj = new GameObject();
         Destroy(obj);
-		var random = UnityEngine.Random.Range(0,3);
+		var random = UnityEngine.Random.Range(0,5);
 		switch(random){
 			case 0:
 			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
@@ -98,7 +102,13 @@ public class ItemManager : MonoBehaviour {
                 obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 			case 2:
-			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
+			    obj =GameObject.Instantiate(bSpike, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
+			break;
+			case 3:
+			    obj =GameObject.Instantiate(spike, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
+			break;
+			case 4:
+			    obj =GameObject.Instantiate(bBlock, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 		}
         obj.GetComponent<Item>().setLane(lane);

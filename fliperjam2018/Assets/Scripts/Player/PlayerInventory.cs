@@ -73,7 +73,7 @@ public class PlayerInventory : MonoBehaviour {
             break;
         }
 
-        if(objToSpawn == "bigRock"){
+        if(objToSpawn == "bigRock" || objToSpawn == "bigSpike"){
             inst.layer = 0;
         }
 
