@@ -31,7 +31,12 @@ public class PlayerMove : MonoBehaviour {
 	[SerializeField]
 	private float catchupSpeed;
 
+	[SerializeField]
+	private AudioClip jumpSound;
+
     public ItemManager thisItemManager;
+
+    public AudioSource audioS;
 
 	public int lane = 0;	//1 = topo, -1 = bot, 0 = mid , public pq preciso pegar fora
     private Rigidbody2D rigid;
@@ -64,6 +69,8 @@ public class PlayerMove : MonoBehaviour {
         else
             cam = GameObject.FindGameObjectWithTag("camp2").GetComponent<Camera>();
 
+        audioS = GetComponent<AudioSource>();
+
 		lossX = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x / 2;
         rigid = GetComponent<Rigidbody2D>();
     }
@@ -85,12 +92,14 @@ public class PlayerMove : MonoBehaviour {
         if(playerNum)
         {
             //Debug.Log(Input.GetAxisRaw("Jump_1"));
-            if (Input.GetAxisRaw("Jump_1") > 0)
+            if (Input.GetAxisRaw("Jump_1") > 0){
                 StartCoroutine( Jump());
+			}
         }
 		else{
-			if (Input.GetAxisRaw("Jump_2") > 0)
+			if (Input.GetAxisRaw("Jump_2") > 0){
                 StartCoroutine( Jump());
+			}
 		}
 
 		//Catchup!
@@ -121,6 +130,10 @@ public class PlayerMove : MonoBehaviour {
             rigid.gravityScale = 2;
             rigid.AddForce(new Vector2(rigid.velocity.x, jumpForce), ForceMode2D.Impulse);
             GetComponent<CircleCollider2D>().enabled = false;
+
+			audioS.clip = jumpSound;
+	        audioS.Play();
+			
             yield return new WaitForSeconds(0.1f);
 
             while (Mathf.Abs(initialYPos - transform.position.y) > .3f)
