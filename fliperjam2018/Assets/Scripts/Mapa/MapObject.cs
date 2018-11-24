@@ -9,6 +9,7 @@ public class MapObject : MonoBehaviour {
 	    [SerializeField]
 	    protected int lane;
 		public bool player;
+		public bool allLane;
 
 		public int Lane{
 			get{
