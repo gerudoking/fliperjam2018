@@ -15,6 +15,8 @@ public class Bomb : MapObject {
 	}
 
 	private void Explode(){
+		GetComponent<AudioSource>().Play();
+
 		GameObject obj = null;
 		if(player == true){
 			obj = GameObject.FindGameObjectWithTag("Player1");

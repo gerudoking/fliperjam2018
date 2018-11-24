@@ -11,6 +11,9 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
     private string slot1 = null;
 
+    [SerializeField]
+	private AudioClip castSound;
+
     private GameObject enemyPlayer;
 
     public int life;
@@ -46,6 +49,9 @@ public class PlayerInventory : MonoBehaviour {
 
         if (buttonNumber == 2 && slot1 == null)
             return;
+
+        GetComponent<AudioSource>().clip = castSound;
+        GetComponent<AudioSource>().Play();
 
         var atualLane = GetComponent<PlayerMove>().lane;
         var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
