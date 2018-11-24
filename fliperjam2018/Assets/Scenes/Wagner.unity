@@ -256,9 +256,10 @@ MonoBehaviour:
   playerNum: 1
   posLine0: {x: 0, y: 4}
   posLine1: {x: 0, y: 2}
-  posLine2: {x: 0, y: 1}
-  changeLaneSpeed: 1.5
-  valor: 0.1
+  posLine2: {x: 0, y: 0}
+  changeLaneSpeed: 15
+  valor: 0.5
+  lane: 0
 --- !u!1 &207847101
 GameObject:
   m_ObjectHideFlags: 0
