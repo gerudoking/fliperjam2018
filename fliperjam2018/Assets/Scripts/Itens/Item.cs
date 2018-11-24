@@ -9,10 +9,17 @@ public class Item : MonoBehaviour {
 
 	private float speed;
 	private Rigidbody2D rb;
+	private int lane;
 
 	public string ItemType{
 		get{
 			return itemType;
+		}
+	}
+
+	public int Lane{
+		get{
+			return lane;
 		}
 	}
 
