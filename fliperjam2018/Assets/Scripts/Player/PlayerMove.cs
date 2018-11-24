@@ -18,12 +18,18 @@ public class PlayerMove : MonoBehaviour {
 	private float changeLaneSpeed;
 
 	[SerializeField]
-	private float valor;
+	private float valor = .5f; // se ele ficar em valor muito pequeno ele passa e continua 
 
-	private int lane = 0;	//1 = topo, -1 = bot, 0 = mid
+	public int lane = 0;	//1 = topo, -1 = bot, 0 = mid
+    private Rigidbody2D rigid;
 
-	// Update is called once per frame
-	void Update () {
+    public void Start()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		float xValue = transform.position.x;
 
 		//Seta os valores x para movimentação
@@ -57,37 +63,41 @@ public class PlayerMove : MonoBehaviour {
 		}
 
 		//Movimento em si
-		float velX = GetComponent<Rigidbody2D>().velocity.x;
+		float velX = rigid.velocity.x;
 
 		if(lane == 1){
 			if(Vector3.Distance(transform.position, posLine0) > valor){
-				GetComponent<Rigidbody2D>().velocity = new Vector2(velX, changeLaneSpeed);
+                rigid.velocity = new Vector2(velX, changeLaneSpeed);
 			}
 			else{
-				GetComponent<Rigidbody2D>().velocity = new Vector2(velX, 0);
+                rigid.velocity = new Vector2(velX, 0);
 				transform.position = new Vector2(transform.position.x, posLine0.y);
 			}
 		}
-		else if(lane == -1){
-			if(Vector3.Distance(transform.position, posLine2) > valor){
-				GetComponent<Rigidbody2D>().velocity = new Vector2(velX, -changeLaneSpeed);
+
+
+	    if(lane == -1){
+            if (Vector3.Distance(transform.position, posLine2) > valor){
+                rigid.velocity = new Vector2(velX, -changeLaneSpeed);
 			}
 			else{
-				GetComponent<Rigidbody2D>().velocity = new Vector2(velX, 0);
+                rigid.velocity = new Vector2(velX, 0);
 				transform.position = new Vector2(transform.position.x, posLine2.y);
 			}
 		}
-		else{
-			if(Vector3.Distance(transform.position, posLine1) > valor){
+
+
+		if(lane == 0){
+            if (Vector3.Distance(transform.position, posLine1) > valor){
 				if(transform.position.y - posLine1.y > 0){
-					GetComponent<Rigidbody2D>().velocity = new Vector3(velX, -changeLaneSpeed);
+                    rigid.velocity = new Vector3(velX, -changeLaneSpeed);
 				}
 				else{
-					GetComponent<Rigidbody2D>().velocity = new Vector3(velX, changeLaneSpeed);
+                    rigid.velocity = new Vector3(velX, changeLaneSpeed);
 				}
 			}
 			else{
-				GetComponent<Rigidbody2D>().velocity = new Vector3(velX, 0);
+                rigid.velocity = new Vector3(velX, 0);
 				transform.position = new Vector2(transform.position.x, posLine1.y);
 			}
 		}
