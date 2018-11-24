@@ -14,12 +14,21 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
 	private AudioClip castSound;
 
+    [SerializeField]
+    private GameObject basicBullet;
+
+    [SerializeField]
+    private float cooldownTime;
+
     private GameObject enemyPlayer;
+    private Timer attackCooldown;
 
     public int life;
 
     public void Start()
     {
+        attackCooldown = new Timer(Timer.TYPE.DECRESCENTE, cooldownTime);
+
         if (this.tag == "Player1")  //Procura o outro player com base na tag
             enemyPlayer = GameObject.FindGameObjectWithTag("Player2");
         else
@@ -28,17 +37,25 @@ public class PlayerInventory : MonoBehaviour {
 
     private void Update() //Temporario apenas para testar as teclas
     {
-        if (Input.GetAxisRaw("FireP1") > 0 && this.tag == "Player1")
+        attackCooldown.Update();
+
+        if (Input.GetButton("FireP1") && this.tag == "Player1")
             UseItem(1);
 
-        if(Input.GetAxisRaw("FireP1") < 0 && this.tag == "Player1")
+        if(Input.GetButton("FireP1") && this.tag == "Player1")
             UseItem(2);
 
-        if (Input.GetAxisRaw("FireP2") > 0 && this.tag == "Player2")
+        if (Input.GetButton("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
+            BasicAttack(true);
+
+        if (Input.GetButton("FireP2") && this.tag == "Player2")
             UseItem(1);
 
-        if(Input.GetAxisRaw("FireP2") < 0 && this.tag == "Player2")
+        if(Input.GetButton("FireP2") && this.tag == "Player2")
             UseItem(2);
+
+        if(Input.GetButton("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
+            BasicAttack(false);
     }
 
 
@@ -85,6 +102,16 @@ public class PlayerInventory : MonoBehaviour {
 
         var clear = (buttonNumber == 1) ? slot0 = null : slot1 = null; //limpar o slot usado
 
+    }
+
+    private void BasicAttack(bool type){
+        var atualLane = GetComponent<PlayerMove>().lane;
+        var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
+
+        GameObject inst = Instantiate(basicBullet, new Vector3(20, spawnPos), Quaternion.identity);
+
+        inst.GetComponent<Bullet>().stunOrDamage = type;
+        attackCooldown.Reset();
     }
 
 	private void OnTriggerEnter2D(Collider2D c){

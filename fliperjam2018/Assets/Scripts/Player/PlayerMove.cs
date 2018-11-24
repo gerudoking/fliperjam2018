@@ -133,7 +133,7 @@ public class PlayerMove : MonoBehaviour {
 
 			audioS.clip = jumpSound;
 	        audioS.Play();
-			
+
             yield return new WaitForSeconds(0.1f);
 
             while (Mathf.Abs(initialYPos - transform.position.y) > .3f)
@@ -331,5 +331,9 @@ public class PlayerMove : MonoBehaviour {
         yield return new WaitForSeconds(timeStun);
         isStun = false;
     }
+
+	public void CallStun(float timeStun){
+		StartCoroutine(RecoverStun(timeStun));
+	}
 
 }

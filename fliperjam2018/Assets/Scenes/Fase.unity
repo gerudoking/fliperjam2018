@@ -253,6 +253,9 @@ MonoBehaviour:
   slot0: rock
   slot1: 
   castSound: {fileID: 0}
+  basicBullet: {fileID: 1657596658828284, guid: de71c49b7b7177b409c3e3c2259c804b,
+    type: 2}
+  cooldownTime: 2
   life: 5
 --- !u!114 &99390913
 MonoBehaviour:
@@ -3254,6 +3257,9 @@ MonoBehaviour:
   slot0: 
   slot1: 
   castSound: {fileID: 0}
+  basicBullet: {fileID: 1657596658828284, guid: de71c49b7b7177b409c3e3c2259c804b,
+    type: 2}
+  cooldownTime: 2
   life: 5
 --- !u!58 &1962245813
 CircleCollider2D:
