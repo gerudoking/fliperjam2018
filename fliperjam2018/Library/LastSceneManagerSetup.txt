@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Eduardo.unity
+- path: Assets/Scenes/Wagner.unity
   isLoaded: 1
   isActive: 1
