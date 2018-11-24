@@ -28,16 +28,16 @@ public class PlayerInventory : MonoBehaviour {
 
     private void Update() //Temporario apenas para testar as teclas
     {
-        if (Input.GetKeyDown(KeyCode.F) && this.tag == "Player1")
+        if (Input.GetAxisRaw("FireP1") > 0 && this.tag == "Player1")
             UseItem(1);
 
-        if(Input.GetKeyDown(KeyCode.G) && this.tag == "Player1")
+        if(Input.GetAxisRaw("FireP1") < 0 && this.tag == "Player1")
             UseItem(2);
 
-        if (Input.GetKeyDown(KeyCode.Keypad1) && this.tag == "Player2")
+        if (Input.GetAxisRaw("FireP2") > 0 && this.tag == "Player2")
             UseItem(1);
 
-        if(Input.GetKeyDown(KeyCode.Keypad2) && this.tag == "Player2")
+        if(Input.GetAxisRaw("FireP2") < 0 && this.tag == "Player2")
             UseItem(2);
     }
 
