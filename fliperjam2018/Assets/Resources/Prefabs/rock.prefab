@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715748242997452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.18, y: 27.12, z: 0.109375}
+  m_LocalPosition: {x: 4.18, y: 27.12, z: -1}
   m_LocalScale: {x: 3.4746788, y: 3.4746788, z: 3.4746788}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lane: 0
+  player: 0
 --- !u!212 &212875977305754880
 SpriteRenderer:
   m_ObjectHideFlags: 1

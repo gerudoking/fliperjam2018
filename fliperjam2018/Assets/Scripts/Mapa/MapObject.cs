@@ -7,7 +7,8 @@ public class MapObject : MonoBehaviour {
 	    private float speed;
 		private Rigidbody2D rb;
 	    [SerializeField]
-	    private int lane;
+	    protected int lane;
+		public bool player;
 
 		public int Lane{
 			get{

@@ -36,7 +36,7 @@ public class ItemManager : MonoBehaviour {
 	void Start () {
 		timer = new Timer(Timer.TYPE.DECRESCENTE, spawnTime);
 
-        if(isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player 
+        if(isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player
         {
             var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerMove>();
             posLine0 = p1.GetLanePos(1);
@@ -85,13 +85,13 @@ public class ItemManager : MonoBehaviour {
 		var random = UnityEngine.Random.Range(0,3);
 		switch(random){
 			case 0:
-			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 			case 1:
-                obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+                obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 			case 2:
-			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 		}
         obj.GetComponent<Item>().setLane(lane);

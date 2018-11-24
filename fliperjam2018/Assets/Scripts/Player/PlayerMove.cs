@@ -89,7 +89,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 
 		//Loss condition
-		if(lost){
+		if(lost || GetComponent<PlayerInventory>().life <= 0){
 			LoseGame();
 		}
     }

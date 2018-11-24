@@ -13,6 +13,8 @@ public class PlayerInventory : MonoBehaviour {
 
     private GameObject enemyPlayer;
 
+    public int life;
+
     public void Start()
     {
         if (this.tag == "Player1")  //Procura o outro player com base na tag
