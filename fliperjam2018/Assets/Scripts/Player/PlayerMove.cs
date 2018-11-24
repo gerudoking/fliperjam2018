@@ -106,6 +106,7 @@ public class PlayerMove : MonoBehaviour {
     {
         if(!isJumping)
         {
+            rigid.velocity = new Vector2(rigid.velocity.x, 0);
             isJumping = true;
             float initialYPos = GetLanePos(lane);
             rigid.gravityScale = 2;
@@ -275,10 +276,12 @@ public class PlayerMove : MonoBehaviour {
 	//Chamada quando este jogador perde o jogo
 	private void LoseGame(){
 		if(playerNum){
+            Destroy(this.gameObject);
 			Debug.Log("True perdeu!");
 		}
 		else{
-			Debug.Log("False perdeu!");
+            Destroy(this.gameObject);
+            Debug.Log("False perdeu!");
 		}
 	}
 
