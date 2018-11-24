@@ -92,13 +92,13 @@ public class ItemManager : MonoBehaviour {
 		var random = UnityEngine.Random.Range(0,3);
 		switch(random){
 			case 0:
-			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj = GameObject.Instantiate(block, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 			case 1:
-                obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+                obj = GameObject.Instantiate(bomb, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 			case 2:
-			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, 0), Quaternion.identity);
+			    obj =GameObject.Instantiate(slime, new Vector3(xLimit, lanePos, -1), Quaternion.identity);
 			break;
 		}
         obj.GetComponent<Item>().setLane(lane);

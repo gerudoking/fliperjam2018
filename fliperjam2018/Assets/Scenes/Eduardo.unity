@@ -142,7 +142,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: rock
   slot1: 
+  life: 5
 --- !u!114 &99390913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   posLine2: {fileID: 1803968393}
   changeLaneSpeed: 10
   valor: 0.5
+  catchupSpeed: 2
   lane: 0
 --- !u!50 &99390914
 Rigidbody2D:
@@ -200,7 +202,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &99390915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1235,7 +1237,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1851,8 +1853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
-  bomb: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
-  slime: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
+  bomb: {fileID: 1339753710056390, guid: 2a53fe9fb8f6d6b4ead7c24cd8088a5f, type: 2}
+  slime: {fileID: 1769407268985270, guid: a46629842c6db5c4db77adcbd1b72026, type: 2}
   isPlayer1: 1
   posLine0: 29
   posLine1: 27
@@ -2549,6 +2551,7 @@ MonoBehaviour:
   posLine2: {fileID: 278684043}
   changeLaneSpeed: 10
   valor: 0.5
+  catchupSpeed: 2
   lane: 0
 --- !u!50 &1962245809
 Rigidbody2D:
@@ -2569,7 +2572,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1962245810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2642,6 +2645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: 
   slot1: 
+  life: 5
 --- !u!58 &1962245813
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2651,7 +2655,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2760,8 +2764,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
-  bomb: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
-  slime: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
+  bomb: {fileID: 1339753710056390, guid: 2a53fe9fb8f6d6b4ead7c24cd8088a5f, type: 2}
+  slime: {fileID: 1769407268985270, guid: a46629842c6db5c4db77adcbd1b72026, type: 2}
   isPlayer1: 0
   posLine0: 18
   posLine1: 16
