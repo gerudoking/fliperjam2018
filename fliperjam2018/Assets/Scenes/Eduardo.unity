@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: 1962245810}
   - component: {fileID: 1962245809}
   - component: {fileID: 1962245808}
+  - component: {fileID: 1962245812}
+  - component: {fileID: 1962245813}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -454,6 +456,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1962245812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1962245807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d8b7c4dace3d4d9fd61b84f5c84ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot0: 
+  slot1: 
+--- !u!58 &1962245813
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1962245807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &2039965973
 GameObject:
   m_ObjectHideFlags: 0
