@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour {
 	[SerializeField]
 	private float valor = .5f; // se ele ficar em valor muito pequeno ele passa e continua 
 
+    public ItemManager thisItemManager;
+
 	public int lane = 0;	//1 = topo, -1 = bot, 0 = mid , public pq preciso pegar fora
     private Rigidbody2D rigid;
 
@@ -165,9 +167,6 @@ public class PlayerMove : MonoBehaviour {
         }
     }
 
-
-
-
     public float GetLanePos(int laneNumber) //apenas uma maneira para eu retornar o valor da lane requisitada por fora
     {
         switch (laneNumber)
@@ -185,6 +184,43 @@ public class PlayerMove : MonoBehaviour {
                 return 404; //apenas para retornar algo e não ter problema na função
 
         }
+    }
+
+    public Transform GetLaneTransform(int lane)
+    {
+        switch (lane)
+        {
+            case 1:
+                return posLine0;
+
+            case 0:
+                return posLine1;
+
+            case -1:
+                return posLine2;
+
+            default: return null;
+        }
+    }
+
+    public void SetLaneTransform(Transform t , int lane)
+    {
+        switch (lane)
+        {
+            case 1:
+                posLine0 = t;
+                break;
+
+            case 0:
+                posLine1 = t;
+                break;
+
+            case -1:
+                posLine2 = t;
+                break;
+        }
 
     }
+
+
 }

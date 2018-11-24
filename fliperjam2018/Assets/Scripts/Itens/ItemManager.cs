@@ -31,27 +31,34 @@ public class ItemManager : MonoBehaviour {
 	private float spawnTime;
 
 	private Timer timer;
+    PlayerMove p1;
+    PlayerMove p2;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		timer = new Timer(Timer.TYPE.DECRESCENTE, spawnTime);
+        p1 = CenarioManager.p1.GetComponent<PlayerMove>();
+        p2 = CenarioManager.p2.GetComponent<PlayerMove>();
 
-        if(isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player 
+        AtualizeValues();
+
+    }
+
+    public void AtualizeValues()
+    {
+        if (isPlayer1) //Apenas para eu não precisar ficar ajeitando na mão, dai ele busca no player 
         {
-            var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerMove>();
             posLine0 = p1.GetLanePos(1);
             posLine1 = p1.GetLanePos(0);
             posLine2 = p1.GetLanePos(-1);
         }
         else
         {
-            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerMove>();
             posLine0 = p2.GetLanePos(1);
             posLine1 = p2.GetLanePos(0);
             posLine2 = p2.GetLanePos(-1);
         }
-
-
     }
 
 	// Update is called once per frame
