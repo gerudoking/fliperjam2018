@@ -40,6 +40,8 @@ public class PlayerMove : MonoBehaviour {
 	private int collisionCounter = 0;
 	private bool catchingUp = false;
 	private bool lost = false;
+    private bool isStun = false;
+    public float stunedTime = 0.5f;
 
 	public bool PlayerNum{
 		get{
@@ -55,7 +57,14 @@ public class PlayerMove : MonoBehaviour {
 
     public void Start()
     {
-		lossX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x / 2;
+        Camera cam;
+
+        if (playerNum)
+            cam = GameObject.FindGameObjectWithTag("camp1").gameObject.GetComponent<Camera>();
+        else
+            cam = GameObject.FindGameObjectWithTag("camp2").GetComponent<Camera>();
+
+		lossX = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x / 2;
         rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -69,7 +78,7 @@ public class PlayerMove : MonoBehaviour {
 		posLine2.transform.position = new Vector3(xValue, posLine2.transform.position.y);
 
         //Movimento em si
-        if(!isJumping)
+        if(!isJumping && !isStun)
             Move(); //Coloquei em uma função para ter controle de quando pode executar as movimentações ou não
 
         //Pulando
@@ -87,7 +96,7 @@ public class PlayerMove : MonoBehaviour {
 		//Catchup!
 		if(transform.position.x < standardX && collisionCounter == 0){
 			rigid.velocity = new Vector3(catchupSpeed, rigid.velocity.y);
-			Debug.Log("Catching Up!");
+			//Debug.Log("Catching Up!");
 			catchingUp = true;
 		}
 		else if(transform.position.x >= standardX && catchingUp){
@@ -111,12 +120,14 @@ public class PlayerMove : MonoBehaviour {
             float initialYPos = GetLanePos(lane);
             rigid.gravityScale = 2;
             rigid.AddForce(new Vector2(rigid.velocity.x, jumpForce), ForceMode2D.Impulse);
+            GetComponent<CircleCollider2D>().enabled = false;
             yield return new WaitForSeconds(0.1f);
 
             while (Mathf.Abs(initialYPos - transform.position.y) > .3f)
                 yield return null;
 
             rigid.gravityScale = 0;
+            GetComponent<CircleCollider2D>().enabled = true;
             isJumping = false;
         }
     }
@@ -287,6 +298,7 @@ public class PlayerMove : MonoBehaviour {
 
 	private void OnCollisionEnter2D(Collision2D c){
 		collisionCounter++;
+        StartCoroutine(RecoverStun(stunedTime));
 	}
 
 	private void OnCollisionExit2D(Collision2D c){
@@ -299,4 +311,12 @@ public class PlayerMove : MonoBehaviour {
 		if (collision.tag == "end")
 			lost = true;
 	}
+
+    public IEnumerator RecoverStun(float timeStun)
+    {
+        isStun = true;
+        yield return new WaitForSeconds(timeStun);
+        isStun = false;
+    }
+
 }

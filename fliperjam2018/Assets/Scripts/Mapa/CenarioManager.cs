@@ -19,10 +19,17 @@ public class CenarioManager : MonoBehaviour {
     public static GameObject p1; //player 1 
     public static GameObject p2; //player 2
 
+    public GameObject camp1;
+    public GameObject camp2;
+    private bool alreadyInverted = true;
+
     public void Start()
     {
         p1 = GameObject.FindGameObjectWithTag("Player1");
         p2 = GameObject.FindGameObjectWithTag("Player2");
+
+        camp1 = GameObject.FindGameObjectWithTag("camp1") ;
+        camp2 = GameObject.FindGameObjectWithTag("camp2");
 
         lastTopPlat = _lastPlat;
         lastBotPlat = _lastBotPlat;
@@ -44,6 +51,22 @@ public class CenarioManager : MonoBehaviour {
 
     IEnumerator coSwapPlayers()
     {
+        if(alreadyInverted)
+        {
+            camp1.GetComponent<Invert>().Inverter("camp1");
+            camp2.GetComponent<Invert>().Inverter("camp2");
+            alreadyInverted = false;
+        }
+        else
+        {
+            camp1.GetComponent<Invert>().Inverter("camp1");
+            camp2.GetComponent<Invert>().Inverter("camp2");
+            alreadyInverted = true;
+        }
+        yield return null;
+
+
+        /*
         var p1Move = p1.GetComponent<PlayerMove>();
         var p2Move = p2.GetComponent<PlayerMove>();
 
@@ -65,7 +88,7 @@ public class CenarioManager : MonoBehaviour {
         p2.transform.position = new Vector3(p2.transform.position.x, p2Move.GetLanePos(0));
 
         p1Move.thisItemManager.AtualizeValues();
-        p2Move.thisItemManager.AtualizeValues();
+        p2Move.thisItemManager.AtualizeValues();*/
     }
 
     public IEnumerator AddVelocity()

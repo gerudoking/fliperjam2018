@@ -75,7 +75,7 @@ public class ItemManager : MonoBehaviour {
 	}
 
 	private void SpawnItem(){
-		Debug.Log("Item spawned");
+		//Debug.Log("Item spawned");
 		int lane = UnityEngine.Random.Range(-1,2);
 		float lanePos = 0;
 		switch(lane)

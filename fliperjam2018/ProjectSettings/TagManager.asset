@@ -10,6 +10,8 @@ TagManager:
   - Player1
   - TopSide
   - BotSide
+  - camp1
+  - camp2
   layers:
   - Default
   - TransparentFX
