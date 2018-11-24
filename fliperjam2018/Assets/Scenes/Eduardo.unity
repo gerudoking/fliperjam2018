@@ -454,6 +454,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2039965973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039965975}
+  - component: {fileID: 2039965974}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2039965974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039965973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd22d3911829ccd4e8760c5dd9929981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
+  bomb: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
+  slime: {fileID: 1381567514712194, guid: 88e5bad0a51de634d853ea370b13ba7f, type: 2}
+  posLine0: 4
+  posLine1: 2
+  posLine2: 0
+  xLimit: 10
+  spawnTime: 2
+--- !u!4 &2039965975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039965973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061484434
 GameObject:
   m_ObjectHideFlags: 0
