@@ -20,6 +20,10 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
     private float cooldownTime;
 
+    //FLow de jogo
+	[SerializeField]
+	private GameflowController flow;
+
     private GameObject enemyPlayer;
     private Timer attackCooldown;
 
@@ -37,25 +41,27 @@ public class PlayerInventory : MonoBehaviour {
 
     private void Update() //Temporario apenas para testar as teclas
     {
-        attackCooldown.Update();
+        if(flow.gameStarted){
+            attackCooldown.Update();
 
-        if (Input.GetKeyDown(KeyCode.F) && this.tag == "Player1")
-            UseItem(1);
+            if (Input.GetKeyDown(KeyCode.F) && this.tag == "Player1")
+                UseItem(1);
 
-        if(Input.GetKeyDown(KeyCode.G) && this.tag == "Player1")
-            UseItem(2);
+            if(Input.GetKeyDown(KeyCode.G) && this.tag == "Player1")
+                UseItem(2);
 
-        if(Input.GetKeyDown(KeyCode.R) && this.tag == "Player1" && attackCooldown.Finished())
-            BasicAttack(true);
+            if(Input.GetKeyDown(KeyCode.R) && this.tag == "Player1" && attackCooldown.Finished())
+                BasicAttack(true);
 
-        if (Input.GetKeyDown(KeyCode.Keypad1) && this.tag == "Player2")
-            UseItem(1);
+            if (Input.GetKeyDown(KeyCode.Keypad1) && this.tag == "Player2")
+                UseItem(1);
 
-        if(Input.GetKeyDown(KeyCode.Keypad2) && this.tag == "Player2")
-            UseItem(2);
+            if(Input.GetKeyDown(KeyCode.Keypad2) && this.tag == "Player2")
+                UseItem(2);
 
-        if(Input.GetKeyDown(KeyCode.Keypad4) && this.tag == "Player2" && attackCooldown.Finished())
-            BasicAttack(false);
+            if(Input.GetKeyDown(KeyCode.Keypad4) && this.tag == "Player2" && attackCooldown.Finished())
+                BasicAttack(false);
+        }
     }
 
 

@@ -61,6 +61,10 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
+	//FLow de jogo
+	[SerializeField]
+	private GameflowController flow;
+
     public void Start()
     {
 		anim = GetComponent<Animator>();
@@ -80,46 +84,48 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		float xValue = transform.position.x;
+		if(flow.gameStarted){
+			float xValue = transform.position.x;
 
-		//Seta os valores x para movimentação
-		posLine0.transform.position = new Vector3(xValue, posLine0.transform.position.y);
-		posLine1.transform.position = new Vector3(xValue, posLine1.transform.position.y);
-		posLine2.transform.position = new Vector3(xValue, posLine2.transform.position.y);
+			//Seta os valores x para movimentação
+			posLine0.transform.position = new Vector3(xValue, posLine0.transform.position.y);
+			posLine1.transform.position = new Vector3(xValue, posLine1.transform.position.y);
+			posLine2.transform.position = new Vector3(xValue, posLine2.transform.position.y);
 
-        //Movimento em si
-        if(!isJumping && !isStun)
-            Move(); //Coloquei em uma função para ter controle de quando pode executar as movimentações ou não
+        	//Movimento em si
+        	if(!isJumping && !isStun)
+            	Move(); //Coloquei em uma função para ter controle de quando pode executar as movimentações ou não
 
-        //Pulando
-        if(playerNum)
-        {
-            //Debug.Log(Input.GetAxisRaw("Jump_1"));
-            if (Input.GetAxisRaw("Jump_1") > 0){
-                StartCoroutine( Jump());
+        	//Pulando
+        	if(playerNum)
+        	{
+            	//Debug.Log(Input.GetAxisRaw("Jump_1"));
+            	if (Input.GetAxisRaw("Jump_1") > 0){
+                	StartCoroutine( Jump());
+				}
+        	}
+			else{
+				if (Input.GetAxisRaw("Jump_2") > 0){
+                	StartCoroutine( Jump());
+				}
 			}
-        }
-		else{
-			if (Input.GetAxisRaw("Jump_2") > 0){
-                StartCoroutine( Jump());
+
+			//Catchup!
+			if(transform.position.x < standardX && collisionCounter == 0){
+				rigid.velocity = new Vector3(catchupSpeed, rigid.velocity.y);
+				//Debug.Log("Catching Up!");
+				catchingUp = true;
 			}
-		}
+			else if(transform.position.x >= standardX && catchingUp){
+				rigid.velocity = new Vector3(0, rigid.velocity.y);
+				transform.position = new Vector3(standardX, transform.position.y, 0);
+				catchingUp = false;
+			}
 
-		//Catchup!
-		if(transform.position.x < standardX && collisionCounter == 0){
-			rigid.velocity = new Vector3(catchupSpeed, rigid.velocity.y);
-			//Debug.Log("Catching Up!");
-			catchingUp = true;
-		}
-		else if(transform.position.x >= standardX && catchingUp){
-			rigid.velocity = new Vector3(0, rigid.velocity.y);
-			transform.position = new Vector3(standardX, transform.position.y, 0);
-			catchingUp = false;
-		}
-
-		//Loss condition
-		if(lost || GetComponent<PlayerInventory>().life <= 0){
-			LoseGame();
+			//Loss condition
+			if(lost || GetComponent<PlayerInventory>().life <= 0){
+				LoseGame();
+			}
 		}
     }
 

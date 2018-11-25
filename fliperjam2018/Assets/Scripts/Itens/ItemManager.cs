@@ -34,6 +34,10 @@ public class ItemManager : MonoBehaviour {
 	[SerializeField]
 	private float spawnTime;
 
+	//FLow de jogo
+	[SerializeField]
+	private GameflowController flow;
+
 	private Timer timer;
     PlayerMove p1;
     PlayerMove p2;
@@ -67,10 +71,12 @@ public class ItemManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		timer.Update();
-		if(timer.Finished()){
-			SpawnItem();
-			timer.Reset();
+		if(flow.gameStarted){
+			timer.Update();
+			if(timer.Finished()){
+				SpawnItem();
+				timer.Reset();
+			}
 		}
 	}
 
