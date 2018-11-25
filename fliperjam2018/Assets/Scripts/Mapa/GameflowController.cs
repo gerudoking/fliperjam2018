@@ -40,7 +40,6 @@ public class GameflowController : MonoBehaviour {
 			transform.Find("FadeOutPanel").GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 			transform.Find("FadeOutPanel").GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 0);
 			transform.Find("FadeOutPanel").GetChild(1).GetComponent<Text>().color = new Color32(255, 255, 255, 0);
-            this.enabled = false;
 		}
 	}
 
