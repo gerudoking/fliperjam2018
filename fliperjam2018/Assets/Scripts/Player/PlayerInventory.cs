@@ -34,10 +34,12 @@ public class PlayerInventory : MonoBehaviour {
     public int life;
 
     private Animator anim;
+    private AudioSource audioS;
 
     public void Start()
     {
         anim = GetComponent<Animator>();
+        audioS = GetComponent<AudioSource>();
         attackCooldown = new Timer(Timer.TYPE.DECRESCENTE, cooldownTime);
 
         if (this.tag == "Player1")  //Procura o outro player com base na tag
@@ -46,7 +48,7 @@ public class PlayerInventory : MonoBehaviour {
             enemyPlayer = GameObject.FindGameObjectWithTag("Player1");
     }
 
-    private void Update() //Temporario apenas para testar as teclas
+    private void Update() 
     {
         if (flow.gameStarted)
         {
@@ -99,8 +101,8 @@ public class PlayerInventory : MonoBehaviour {
         if (buttonNumber == 2 && slot1 == null)
             return;
         
-        GetComponent<AudioSource>().clip = castSound;
-        GetComponent<AudioSource>().Play();
+        audioS.clip = castSound;
+        audioS.Play();
 
         var atualLane = GetComponent<PlayerMove>().lane;
         var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
