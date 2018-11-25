@@ -24,6 +24,10 @@ public class PlayerInventory : MonoBehaviour {
 	[SerializeField]
 	private GameflowController flow;
 
+    //Vidas
+    [SerializeField]
+    private Transform lifeSymbols;
+
     private GameObject enemyPlayer;
     private Timer attackCooldown;
 
@@ -42,6 +46,23 @@ public class PlayerInventory : MonoBehaviour {
     private void Update() //Temporario apenas para testar as teclas
     {
         if(flow.gameStarted){
+            //Controle dos corações
+            if(life == 1){
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(false);
+                lifeSymbols.GetChild(2).gameObject.SetActive(false);
+            }
+            else if(life == 2){
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(true);
+                lifeSymbols.GetChild(2).gameObject.SetActive(false);
+            }
+            else if(life == 3){
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(true);
+                lifeSymbols.GetChild(2).gameObject.SetActive(true);
+            }
+
             attackCooldown.Update();
 
             if (Input.GetKeyDown(KeyCode.F) && this.tag == "Player1")
