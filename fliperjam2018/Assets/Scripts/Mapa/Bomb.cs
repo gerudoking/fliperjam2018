@@ -6,6 +6,7 @@ public class Bomb : MapObject {
 
 	[SerializeField]
 	private float explosionX;
+    public GameObject particleEffect;
 
     private bool alreadyDO = false;
 
@@ -36,6 +37,7 @@ public class Bomb : MapObject {
 	}
     void lateDestroy()
     {
+        Instantiate(particleEffect, transform.position, particleEffect.transform.rotation);
         GameObject.Destroy(gameObject);
     }
 

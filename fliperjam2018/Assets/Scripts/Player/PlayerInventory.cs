@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour {
 
@@ -20,6 +21,9 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
     private float cooldownTime;
 
+    [SerializeField]
+    private GameObject itemText;
+
     //FLow de jogo
 	[SerializeField]
 	private GameflowController flow;
@@ -36,6 +40,9 @@ public class PlayerInventory : MonoBehaviour {
     private Animator anim;
     private AudioSource audioS;
 
+    [SerializeField]
+    private Camera cam;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
@@ -48,7 +55,7 @@ public class PlayerInventory : MonoBehaviour {
             enemyPlayer = GameObject.FindGameObjectWithTag("Player1");
     }
 
-    private void Update() 
+    private void Update()
     {
         if (flow.gameStarted)
         {
@@ -148,6 +155,8 @@ public class PlayerInventory : MonoBehaviour {
         audioS.clip = soundsPlayer.attack_sound;
         audioS.Play();
 
+        anim.SetTrigger("isCasting");
+
         var atualLane = GetComponent<PlayerMove>().lane;
         var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
 
@@ -170,10 +179,14 @@ public class PlayerInventory : MonoBehaviour {
 			if(string.IsNullOrEmpty(slot0)){
 				slot0 = c.gameObject.GetComponent<Item>().ItemType;
                 Destroy(c.gameObject);
+                GameObject obj = Instantiate(itemText, cam.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2)), Quaternion.identity, flow.transform);
+                obj.GetComponent<Text>().text = c.gameObject.GetComponent<Item>().ItemType;
 				return;
 			}
 			if(string.IsNullOrEmpty(slot1)){
 				slot1 = c.gameObject.GetComponent<Item>().ItemType;
+                GameObject obj = Instantiate(itemText, cam.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2)), Quaternion.identity, flow.transform);
+                obj.GetComponent<Text>().text = c.gameObject.GetComponent<Item>().ItemType;
             }
             Destroy(c.gameObject); // destruir mesmo que não possa pegar, para não dar a sensação de "ue pq não pegou" ao jogador
         }
