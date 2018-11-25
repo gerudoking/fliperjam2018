@@ -8,7 +8,7 @@ public class MapObject : MonoBehaviour {
 		protected Rigidbody2D rb;
 	    [SerializeField]
 	    protected int lane;
-		public bool player;
+		public bool isPlayer1;
 		public bool allLane;
 
 		public int Lane{

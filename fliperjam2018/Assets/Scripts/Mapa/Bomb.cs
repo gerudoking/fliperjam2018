@@ -18,14 +18,17 @@ public class Bomb : MapObject {
 		GetComponent<AudioSource>().Play();
 
 		GameObject obj = null;
-		if(player == true){
-			obj = GameObject.FindGameObjectWithTag("Player1");
+		if(isPlayer1 == true){
+            obj = CenarioManager.p1;
 		}
 		else{
-			obj = GameObject.FindGameObjectWithTag("Player2");
+            obj = CenarioManager.p2;
 		}
 		if(obj.GetComponent<PlayerMove>().lane == lane)
-			obj.GetComponent<PlayerInventory>().life--;
-		GameObject.Destroy(gameObject);
+        {
+            Debug.Log("É player1? : " +isPlayer1);
+            obj.GetComponent<PlayerInventory>().takeDamage();
+        }
+        GameObject.Destroy(gameObject);
 	}
 }

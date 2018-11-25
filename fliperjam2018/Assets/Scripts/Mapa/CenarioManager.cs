@@ -36,6 +36,7 @@ public class CenarioManager : MonoBehaviour {
 
         velocity = _velocity;
         StartCoroutine(AddVelocity());
+
     }
 
     private void Update()

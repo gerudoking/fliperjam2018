@@ -47,6 +47,7 @@ public class PlayerMove : MonoBehaviour {
 	private bool lost = false;
     private bool isStun = false;
     public float stunedTime = 0.5f;
+	private Animator anim;
 
 	public bool PlayerNum{
 		get{
@@ -62,6 +63,8 @@ public class PlayerMove : MonoBehaviour {
 
     public void Start()
     {
+		anim = GetComponent<Animator>();
+
         Camera cam;
 
         if (playerNum)
@@ -126,6 +129,7 @@ public class PlayerMove : MonoBehaviour {
         {
             rigid.velocity = new Vector2(rigid.velocity.x, 0);
             isJumping = true;
+			anim.SetBool("isJumping", true);
             float initialYPos = GetLanePos(lane);
             rigid.gravityScale = 2;
             rigid.AddForce(new Vector2(rigid.velocity.x, jumpForce), ForceMode2D.Impulse);
@@ -142,6 +146,7 @@ public class PlayerMove : MonoBehaviour {
             rigid.gravityScale = 0;
             GetComponent<CircleCollider2D>().enabled = true;
             isJumping = false;
+			anim.SetBool("isJumping", false);
         }
     }
 

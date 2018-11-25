@@ -25,8 +25,11 @@ public class PlayerInventory : MonoBehaviour {
 
     public int life;
 
+    private Animator anim;
+
     public void Start()
     {
+        anim = GetComponent<Animator>();
         attackCooldown = new Timer(Timer.TYPE.DECRESCENTE, cooldownTime);
 
         if (this.tag == "Player1")  //Procura o outro player com base na tag
@@ -39,22 +42,22 @@ public class PlayerInventory : MonoBehaviour {
     {
         attackCooldown.Update();
 
-        if (Input.GetButton("FireP1") && this.tag == "Player1")
+        if (Input.GetButtonDown("FireP1") && this.tag == "Player1")
             UseItem(1);
 
-        if(Input.GetButton("FireP1") && this.tag == "Player1")
+        if(Input.GetButtonDown("FireP1") && this.tag == "Player1")
             UseItem(2);
 
-        if (Input.GetButton("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
+        if (Input.GetButtonDown("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
             BasicAttack(true);
 
-        if (Input.GetButton("FireP2") && this.tag == "Player2")
+        if (Input.GetButtonDown("FireP2") && this.tag == "Player2")
             UseItem(1);
 
-        if(Input.GetButton("FireP2") && this.tag == "Player2")
+        if(Input.GetButtonDown("FireP2") && this.tag == "Player2")
             UseItem(2);
 
-        if(Input.GetButton("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
+        if(Input.GetButtonDown("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
             BasicAttack(false);
     }
 
@@ -66,7 +69,7 @@ public class PlayerInventory : MonoBehaviour {
 
         if (buttonNumber == 2 && slot1 == null)
             return;
-
+        
         GetComponent<AudioSource>().clip = castSound;
         GetComponent<AudioSource>().Play();
 
@@ -76,15 +79,22 @@ public class PlayerInventory : MonoBehaviour {
         string objToSpawn = (buttonNumber == 1) ? objToSpawn = slot0 : objToSpawn = slot1; //pegando o nome do item dependendo do button recebido
 
         //Caso da big rock, que ocupa todas as lanes
-        if(objToSpawn == "bigRock"){
+        if(objToSpawn == "bigRock" || objToSpawn == "bigSpike"){
             spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(0);
         }
 
         GameObject obj = (GameObject) Resources.Load(Path.Combine("Prefabs", objToSpawn)); //Busca e Carregando o obj pelo nome
 
-        GameObject inst = Instantiate(obj, new Vector3(20, spawnPos), Quaternion.identity);
+        if (obj == null)
+        {
+            Debug.Log("Não foi possivel retornar o objeto");
+            return;
+        }
+        anim.SetTrigger("isCasting");
 
-        switch(atualLane){
+        GameObject inst = Instantiate(obj, new Vector3(20, spawnPos), Quaternion.identity);
+        inst.GetComponent<MapObject>().isPlayer1 = (this.tag == "Player1") ? false : true;
+        switch (atualLane){
             case -1:
                 inst.layer = 10;
             break;
@@ -112,6 +122,13 @@ public class PlayerInventory : MonoBehaviour {
 
         inst.GetComponent<Bullet>().stunOrDamage = type;
         attackCooldown.Reset();
+    }
+
+    public void takeDamage()
+    {
+        Debug.Log("damaging");
+        life--;
+        anim.SetTrigger("isDamage");
     }
 
 	private void OnTriggerEnter2D(Collider2D c){
