@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CenarioManager : MonoBehaviour {
 
@@ -23,6 +24,15 @@ public class CenarioManager : MonoBehaviour {
     public GameObject camp2;
     private bool alreadyInverted = true;
 
+    public GameObject _winObj;
+    public static GameObject winObj;
+
+    public static Sprite winP1;
+    public Sprite _winP1;
+
+    public static Sprite winP2;
+    public Sprite _winP2;
+
     public void Start()
     {
         p1 = GameObject.FindGameObjectWithTag("Player1");
@@ -30,6 +40,10 @@ public class CenarioManager : MonoBehaviour {
 
         camp1 = GameObject.FindGameObjectWithTag("camp1") ;
         camp2 = GameObject.FindGameObjectWithTag("camp2");
+
+        winP1 = _winP1;
+        winP2 = _winP2;
+        winObj = _winObj;
 
         lastTopPlat = _lastPlat;
         lastBotPlat = _lastBotPlat;

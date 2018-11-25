@@ -43,6 +43,11 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
     private Camera cam;
 
+    public Image skill1;
+    public Sprite ImagemVazia;
+    public Image skill2;
+
+    public Sprite[] objs;
     public void Start()
     {
         anim = GetComponent<Animator>();
@@ -78,23 +83,24 @@ public class PlayerInventory : MonoBehaviour {
                 lifeSymbols.GetChild(1).gameObject.SetActive(true);
                 lifeSymbols.GetChild(2).gameObject.SetActive(true);
             }
+            attackCooldown.Update();
 
-            if (Input.GetAxisRaw("FireP1")  > 0 && this.tag == "Player1")
+            if (Input.GetButtonDown("Fire4-1")&& this.tag == "Player1")
                 UseItem(1);
 
-            if (Input.GetAxisRaw("FireP1") < 0 && this.tag == "Player1")
+            if (Input.GetButtonDown("Fire1-1")&& this.tag == "Player1")
                 UseItem(2);
 
-            if (Input.GetButtonDown("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
+            if (Input.GetButtonDown("Fire2-1") && this.tag == "Player1" && attackCooldown.Finished())
                 BasicAttack(true);
 
-            if (Input.GetAxisRaw("FireP2") > 0 && this.tag == "Player2")
+            if (Input.GetButtonDown("Fire4-2")&& this.tag == "Player2")
                 UseItem(1);
 
-            if (Input.GetAxisRaw("FireP2") < 0 && this.tag == "Player2")
+            if (Input.GetButtonDown("Fire1-2") && this.tag == "Player2")
                 UseItem(2);
 
-            if (Input.GetButtonDown("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
+            if (Input.GetButtonDown("Fire2-2") && this.tag == "Player2" && attackCooldown.Finished())
                 BasicAttack(false);
         }
     }
@@ -125,6 +131,12 @@ public class PlayerInventory : MonoBehaviour {
             Debug.Log("Não foi possivel retornar o objeto");
             return;
         }
+
+        if (buttonNumber == 1)
+            skill1.sprite = ImagemVazia;
+       if (buttonNumber == 2)
+            skill2.sprite = ImagemVazia;
+
         anim.SetTrigger("isCasting");
         audioS.clip = soundsPlayer.cast_sound;
         audioS.Play();
@@ -174,19 +186,41 @@ public class PlayerInventory : MonoBehaviour {
         anim.SetTrigger("isDamage");
     }
 
+    void atualizarIcone(string itemType,int slot)
+    {
+        for (int i = 0; i < objs.Length; i++)
+        {
+            Debug.Log(objs[i].name + "  " + itemType);
+            if(objs[i].name == itemType)
+            {
+                if (slot == 1)
+                    skill1.sprite = objs[i];
+                if(slot == 2)
+                    skill2.sprite = objs[i];
+
+                break;
+            }
+        }
+        
+    }
+
 	private void OnTriggerEnter2D(Collider2D c){
 		if(c.gameObject.tag == "isItem" && GetComponent<PlayerMove>().lane == c.GetComponent<Item>().Lane){
 			if(string.IsNullOrEmpty(slot0)){
 				slot0 = c.gameObject.GetComponent<Item>().ItemType;
                 Destroy(c.gameObject);
                 GameObject obj = Instantiate(itemText, cam.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2)), Quaternion.identity, flow.transform);
-                obj.GetComponent<Text>().text = c.gameObject.GetComponent<Item>().ItemType;
+                var nome = c.gameObject.GetComponent<Item>().ItemType;
+                obj.GetComponent<Text>().text = nome;
+                atualizarIcone(nome, 1);
 				return;
 			}
 			if(string.IsNullOrEmpty(slot1)){
 				slot1 = c.gameObject.GetComponent<Item>().ItemType;
                 GameObject obj = Instantiate(itemText, cam.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2)), Quaternion.identity, flow.transform);
-                obj.GetComponent<Text>().text = c.gameObject.GetComponent<Item>().ItemType;
+                var nome = c.gameObject.GetComponent<Item>().ItemType;
+                obj.GetComponent<Text>().text = nome;
+                atualizarIcone(nome, 2);
             }
             Destroy(c.gameObject); // destruir mesmo que não possa pegar, para não dar a sensação de "ue pq não pegou" ao jogador
         }

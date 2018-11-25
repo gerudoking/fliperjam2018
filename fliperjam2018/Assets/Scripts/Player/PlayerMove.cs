@@ -49,7 +49,13 @@ public class PlayerMove : MonoBehaviour {
     public float stunedTime = 0.5f;
 	private Animator anim;
 
-	public bool PlayerNum{
+    public Sprite winRoxo;
+    public Sprite loseRoxo;
+    public Sprite winVerde;
+    public Sprite loseVerde;
+
+
+    public bool PlayerNum{
 		get{
 			return playerNum;
 		}
@@ -100,12 +106,13 @@ public class PlayerMove : MonoBehaviour {
         	if(playerNum)
         	{
             	//Debug.Log(Input.GetAxisRaw("Jump_1"));
-            	if (Input.GetAxisRaw("Jump_1") > 0){
+            	if (Input.GetButtonDown("Fire3-1")){
                 	StartCoroutine( Jump());
 				}
         	}
 			else{
-				if (Input.GetAxisRaw("Jump_2") > 0){
+				if (Input.GetButtonDown("Fire3-2"))
+                {
                 	StartCoroutine( Jump());
 				}
 			}
@@ -161,11 +168,11 @@ public class PlayerMove : MonoBehaviour {
         //Movimento por axis do primeiro jogador
         if (playerNum)
         {
-            if (Input.GetAxisRaw("Vertical_1") == 1)
+            if (Input.GetAxisRaw("Vertical-1") == 1)
             {
                 lane = 1;
             }
-            else if (Input.GetAxisRaw("Vertical_1") == -1)
+            else if (Input.GetAxisRaw("Vertical-1") == -1)
             {
                 lane = -1;
             }
@@ -177,11 +184,11 @@ public class PlayerMove : MonoBehaviour {
         //Movimento por axis do segundo jogador
         else
         {
-            if (Input.GetAxisRaw("Vertical_2") == 1)
+            if (Input.GetAxisRaw("Vertical-2") == 1)
             {
                 lane = 1;
             }
-            else if (Input.GetAxisRaw("Vertical_2") == -1)
+            else if (Input.GetAxisRaw("Vertical-2") == -1)
             {
                 lane = -1;
             }
@@ -310,14 +317,23 @@ public class PlayerMove : MonoBehaviour {
 
 	//Chamada quando este jogador perde o jogo
 	private void LoseGame(){
-		if(playerNum){
-            Destroy(this.gameObject);
-			Debug.Log("True perdeu!");
-		}
-		else{
-            Destroy(this.gameObject);
-            Debug.Log("False perdeu!");
-		}
+        if(CenarioManager.winObj.activeInHierarchy == false)
+        {
+            if (playerNum)
+            {
+                CenarioManager.winObj.GetComponent<UnityEngine.UI.Image>().sprite = CenarioManager.winP2;
+                CenarioManager.winObj.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = winVerde;
+                CenarioManager.winObj.transform.GetChild(1).GetComponent<UnityEngine.UI.Image>().sprite = loseRoxo;
+                
+            }
+            else
+            {
+                CenarioManager.winObj.GetComponent<UnityEngine.UI.Image>().sprite = CenarioManager.winP1;
+                CenarioManager.winObj.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = winRoxo;
+                CenarioManager.winObj.transform.GetChild(1).GetComponent<UnityEngine.UI.Image>().sprite = loseVerde;
+            }
+        }
+        CenarioManager.winObj.SetActive(true);
 	}
 
 	private void OnCollisionEnter2D(Collision2D c){

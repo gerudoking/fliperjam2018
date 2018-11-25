@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "664361838558",
+    "firebase_url": "https://learnforreal-94bdf.firebaseio.com",
+    "project_id": "learnforreal-94bdf",
+    "storage_bucket": "learnforreal-94bdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664361838558:android:81f82c9adb8a726a",
+        "android_client_info": {
+          "package_name": "com.ghostMesh.learnForReal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664361838558-3kjca7k91t7e8ov31bnmdhivjsqgh676.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuL0c1tOFQt_-S_nZoi8ne-D_4eGM-NC8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
