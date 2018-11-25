@@ -4,4 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MapObject {
 
+    private void Update()
+    {
+        this.rb.velocity = new Vector2(-CenarioManager.velocity, 0);
+    }
+
 }

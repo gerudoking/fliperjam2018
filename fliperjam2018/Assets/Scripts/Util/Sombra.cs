@@ -11,7 +11,7 @@ public class Sombra : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Invoke("SetPlayer", 1);
+        Invoke("SetPlayer", .5f);
 	}
 	
     void SetPlayer()

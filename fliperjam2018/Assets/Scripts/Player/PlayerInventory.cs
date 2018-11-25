@@ -100,9 +100,6 @@ public class PlayerInventory : MonoBehaviour {
 
         if (buttonNumber == 2 && slot1 == null)
             return;
-        
-        audioS.clip = castSound;
-        audioS.Play();
 
         var atualLane = GetComponent<PlayerMove>().lane;
         var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
@@ -122,7 +119,8 @@ public class PlayerInventory : MonoBehaviour {
             return;
         }
         anim.SetTrigger("isCasting");
-
+        audioS.clip = soundsPlayer.cast_sound;
+        audioS.Play();
         GameObject inst = Instantiate(obj, new Vector3(20, spawnPos), Quaternion.identity);
         inst.GetComponent<MapObject>().isPlayer1 = (this.tag == "Player1") ? false : true;
         switch (atualLane){
@@ -146,6 +144,10 @@ public class PlayerInventory : MonoBehaviour {
     }
 
     private void BasicAttack(bool type){
+
+        audioS.clip = soundsPlayer.attack_sound;
+        audioS.Play();
+
         var atualLane = GetComponent<PlayerMove>().lane;
         var spawnPos = enemyPlayer.GetComponent<PlayerMove>().GetLanePos(atualLane);
 
@@ -157,7 +159,8 @@ public class PlayerInventory : MonoBehaviour {
 
     public void takeDamage()
     {
-        Debug.Log("damaging");
+        audioS.clip = soundsPlayer.damage_sound;
+        audioS.Play();
         life--;
         anim.SetTrigger("isDamage");
     }

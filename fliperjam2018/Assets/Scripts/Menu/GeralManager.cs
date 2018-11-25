@@ -21,8 +21,9 @@ public class GeralManager : MonoBehaviour {
             {
                 SceneManager.LoadScene("Fase");
             }
-            else
+            else if(Input.GetButtonDown("Cancel"))
             {
+                Debug.Log("quit");
                 Application.Quit();
             }
 

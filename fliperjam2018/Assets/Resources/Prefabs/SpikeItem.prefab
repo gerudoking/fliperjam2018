@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 58577064483453318}
   - component: {fileID: 95521611991299746}
   m_Layer: 0
-  m_Name: spikeItem
+  m_Name: SpikeItem
   m_TagString: isItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,6 @@ MonoBehaviour:
   isPlayer1: 0
   allLane: 0
   itemType: spike
-  imageToShow: {fileID: 0}
 --- !u!212 &212297040713113724
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -301,7 +300,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.43867922, b: 0.95989484, a: 1}
+  m_Color: {r: 1, g: 0.759434, b: 0.9831772, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

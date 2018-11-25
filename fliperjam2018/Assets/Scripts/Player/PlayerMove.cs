@@ -141,7 +141,7 @@ public class PlayerMove : MonoBehaviour {
             rigid.AddForce(new Vector2(rigid.velocity.x, jumpForce), ForceMode2D.Impulse);
             GetComponent<CircleCollider2D>().enabled = false;
 
-			audioS.clip = jumpSound;
+			audioS.clip = soundsPlayer.jump_sound;
 	        audioS.Play();
 
             yield return new WaitForSeconds(0.1f);
@@ -338,6 +338,8 @@ public class PlayerMove : MonoBehaviour {
 
     public IEnumerator RecoverStun(float timeStun)
     {
+        audioS.clip = soundsPlayer.stun_sound;
+        audioS.Play();
         isStun = true;
         yield return new WaitForSeconds(timeStun);
         isStun = false;

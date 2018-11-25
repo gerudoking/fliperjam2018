@@ -7,9 +7,12 @@ public class Bomb : MapObject {
 	[SerializeField]
 	private float explosionX;
 
+    private bool alreadyDO = false;
+
 	// Update is called once per frame
 	void Update () {
-		if(transform.position.x <= explosionX){
+		if(transform.position.x <= explosionX && !alreadyDO){
+            alreadyDO = true;
 			Explode();
 		}
 	}
@@ -29,6 +32,13 @@ public class Bomb : MapObject {
             Debug.Log("É player1? : " +isPlayer1);
             obj.GetComponent<PlayerInventory>().takeDamage();
         }
-        GameObject.Destroy(gameObject);
+        Invoke("lateDestroy", 0.7f);
 	}
+    void lateDestroy()
+    {
+        GameObject.Destroy(gameObject);
+    }
+
+
+
 }
