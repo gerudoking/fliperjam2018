@@ -20,6 +20,14 @@ public class PlayerInventory : MonoBehaviour {
     [SerializeField]
     private float cooldownTime;
 
+    //FLow de jogo
+	[SerializeField]
+	private GameflowController flow;
+
+    //Vidas
+    [SerializeField]
+    private Transform lifeSymbols;
+
     private GameObject enemyPlayer;
     private Timer attackCooldown;
 
@@ -40,25 +48,46 @@ public class PlayerInventory : MonoBehaviour {
 
     private void Update() //Temporario apenas para testar as teclas
     {
-        attackCooldown.Update();
+        if (flow.gameStarted)
+        {
+            //Controle dos corações
+            if (life == 1)
+            {
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(false);
+                lifeSymbols.GetChild(2).gameObject.SetActive(false);
+            }
+            else if (life == 2)
+            {
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(true);
+                lifeSymbols.GetChild(2).gameObject.SetActive(false);
+            }
+            else if (life == 3)
+            {
+                lifeSymbols.GetChild(0).gameObject.SetActive(true);
+                lifeSymbols.GetChild(1).gameObject.SetActive(true);
+                lifeSymbols.GetChild(2).gameObject.SetActive(true);
+            }
 
-        if (Input.GetButtonDown("FireP1") && this.tag == "Player1")
-            UseItem(1);
+            if (Input.GetAxisRaw("FireP1")  > 0 && this.tag == "Player1")
+                UseItem(1);
 
-        if(Input.GetButtonDown("FireP1") && this.tag == "Player1")
-            UseItem(2);
+            if (Input.GetAxisRaw("FireP1") < 0 && this.tag == "Player1")
+                UseItem(2);
 
-        if (Input.GetButtonDown("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
-            BasicAttack(true);
+            if (Input.GetButtonDown("AttackP1") && this.tag == "Player1" && attackCooldown.Finished())
+                BasicAttack(true);
 
-        if (Input.GetButtonDown("FireP2") && this.tag == "Player2")
-            UseItem(1);
+            if (Input.GetAxisRaw("FireP2") > 0 && this.tag == "Player2")
+                UseItem(1);
 
-        if(Input.GetButtonDown("FireP2") && this.tag == "Player2")
-            UseItem(2);
+            if (Input.GetAxisRaw("FireP2") < 0 && this.tag == "Player2")
+                UseItem(2);
 
-        if(Input.GetButtonDown("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
-            BasicAttack(false);
+            if (Input.GetButtonDown("AttackP2") && this.tag == "Player2" && attackCooldown.Finished())
+                BasicAttack(false);
+        }
     }
 
 
