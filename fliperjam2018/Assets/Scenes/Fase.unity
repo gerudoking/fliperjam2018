@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: bigSpike
   slot1: 
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: c25aaf5e0305b4fdcb0a67237a8106e0, type: 3}
   basicBullet: {fileID: 1657596658828284, guid: de71c49b7b7177b409c3e3c2259c804b,
     type: 2}
   cooldownTime: 2
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   catchupSpeed: 0
   jumpSound: {fileID: 8300000, guid: 1552692ea72704a318dd896eedb1b81a, type: 3}
   thisItemManager: {fileID: 1695491985}
-  audioS: {fileID: 0}
+  audioS: {fileID: 99390918}
   lane: 0
   stunedTime: 0.5
   flow: {fileID: 2076529426}
@@ -1417,7 +1417,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138920763
 MonoBehaviour:
@@ -2082,7 +2082,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418239605
 MonoBehaviour:
@@ -3063,7 +3063,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639276912
 MonoBehaviour:
@@ -3622,7 +3622,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772117635
 MonoBehaviour:
@@ -6877,7 +6877,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718507427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -6885,12 +6885,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 5
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildAlignment: 8
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 50}
+  m_Constraint: 1
+  m_ConstraintCount: 1
 --- !u!222 &1718507430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7498,7 +7499,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782485481
 MonoBehaviour:
@@ -7915,7 +7916,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929868421
 MonoBehaviour:
@@ -8132,9 +8133,9 @@ MonoBehaviour:
   changeLaneSpeed: 10
   valor: 0.5
   catchupSpeed: 0
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 1552692ea72704a318dd896eedb1b81a, type: 3}
   thisItemManager: {fileID: 2039965974}
-  audioS: {fileID: 0}
+  audioS: {fileID: 1962245815}
   lane: 0
   stunedTime: 0.5
   flow: {fileID: 2076529426}
@@ -8230,7 +8231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot0: bomb
   slot1: 
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: c25aaf5e0305b4fdcb0a67237a8106e0, type: 3}
   basicBullet: {fileID: 1657596658828284, guid: de71c49b7b7177b409c3e3c2259c804b,
     type: 2}
   cooldownTime: 2
@@ -8859,6 +8860,13 @@ MonoBehaviour:
   gameStarted: 0
   timeValue: 1
   presentationValue: 1
+  swapValue: 30
+  swapLesserValue: 0.2
+  manager: {fileID: 458127702}
+  maxNumberOfBlinks: 2
+  obstacleSpawnTime: 4
+  p1: {fileID: 99390913}
+  p2: {fileID: 1962245808}
 --- !u!114 &2076529427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8983,7 +8991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2130247756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -8991,12 +8999,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 50}
+  m_Constraint: 1
+  m_ConstraintCount: 1
 --- !u!222 &2130247759
 CanvasRenderer:
   m_ObjectHideFlags: 0

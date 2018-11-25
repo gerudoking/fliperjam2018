@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 58577064483453318}
   - component: {fileID: 95521611991299746}
   m_Layer: 0
-  m_Name: spikeItem
+  m_Name: SpikeItem
   m_TagString: isItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,6 @@ MonoBehaviour:
   isPlayer1: 0
   allLane: 0
   itemType: spike
-  imageToShow: {fileID: 0}
 --- !u!212 &212297040713113724
 SpriteRenderer:
   m_ObjectHideFlags: 1
